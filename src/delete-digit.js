@@ -1,3 +1,4 @@
+const { it } = require('mocha');
 const { NotImplementedError } = require('../extensions/index.js');
 
 /**
@@ -11,10 +12,15 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For n = 152, the output should be 52
  *
  */
-function deleteDigit(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function deleteDigit(n) {
+  let maxN = 0;
+  for (let i = 1; i < n; i *= 10) {
+    const item = Math.trunc(n / (10 * i)) * i + n % i;
+    maxN = Math.max(maxN, item)
+  }
+  return maxN;
 }
+console.log(deleteDigit(4235));
 
 module.exports = {
   deleteDigit
